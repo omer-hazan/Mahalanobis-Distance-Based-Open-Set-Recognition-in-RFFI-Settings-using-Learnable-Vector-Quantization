@@ -193,11 +193,10 @@ This project was developed by:
 ---
 
 ## 📂 References
-
-- **Key Paper**:  
-  [Your Paper Title](https://arxiv.org/abs/your-paper-arxiv-id) *(Add when available)*
 - **Mahalanobis OOD Detection**:  
-  [A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks](https://arxiv.org/abs/1807.03888)
+  [Out-of-distribution Detection in
+High-dimensional Data Using Mahalanobis
+Distance - Critical Analysis](https://www.iccs-meeting.org/archive/iccs2022/papers/133500260.pdf)
 
 ---
 
