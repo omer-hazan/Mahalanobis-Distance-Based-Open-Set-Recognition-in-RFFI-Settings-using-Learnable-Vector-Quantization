@@ -1,7 +1,5 @@
 # 📡 Mahalanobis-Distance-Based-Open-Set-Recognition-in-RFFI-Settings-using-Learnable-Vector-Quantization
-This repository presents a Mahalanobis distance-based open set recognition framework for radio frequency fingerprinting identification (RFFI). Leveraging learnable vector quantization, the model provides robust device classification and reliably detects unknown devices in real-world wireless environments.
-
-This repository implements a **Mahalanobis distance-based open set recognition framework** for Radio Frequency Fingerprinting Identification (**RFFI**) using **learnable vector quantization**. Our approach enables robust detection of previously unseen (open-set) wireless devices by combining deep representation learning with statistical distance metrics in the quantization process.
+This repository presents a **Mahalanobis distance-based open set recognition framework** for radio frequency fingerprinting identification (**RFFI**). Leveraging **learnable vector quantization**, the model provides robust device classification and reliably detects unknown devices in real-world wireless environments.
 
 ---
 
