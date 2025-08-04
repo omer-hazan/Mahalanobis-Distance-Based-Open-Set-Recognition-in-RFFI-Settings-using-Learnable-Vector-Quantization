@@ -53,12 +53,12 @@ flowchart TD
    - Extracting device distinctive Hand Crafted Features (HCFs)
 3. **Feature Extraction (Encoder)**  
    - A neural network encoder maps the signal to a compact latent representation.
-4. **Learnable Vector Quantization**  
-   - The latent features are quantized using a learnable codebook.
-5. **Mahalanobis Distance-Based Classification**  
-   - Device identity is inferred by measuring Mahalanobis distances in the codebook space. Unknown (open set) devices are detected as outliers.
-6. **Open Set Detection**  
+4. **Open Set Detection**  
    - Thresholding the Mahalanobis score enables distinguishing between known and unknown devices.
+5. **Learnable Vector Quantization**  
+   - The latent features are quantized using a learnable codebook.
+6. **Mahalanobis Distance-Based Classification**  
+   - Device identity is inferred by measuring Mahalanobis distances in the codebook space. Unknown (open set) devices are detected as outliers.
 
 ---
 
