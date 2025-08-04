@@ -29,7 +29,21 @@ We model latent features as class-specific clusters in high-dimensional space, a
 
 The pipeline below summarizes our method:
 
-![system-architecture](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/assets/your-architecture-diagram.png)
+```mermaid
+flowchart TD
+    A[IQ data] --> B[Channel Indepndent Spectogram]
+    A --> C[Device Distinctive HCFs]
+    B --> D[Feature Extractor]
+    C --> D
+    D --> E[Codebook]
+    F --> G[Quantized Vector]
+    G --> H[MLP Classifier]
+
+    E --> I[Entropy Calculation]
+    I --> J{Entropy > Threshold?}
+    J -->|Yes| K[Label as Rogue Sample]
+    J -->|No| F[MD Quantization]
+```
 
 **Pipeline Steps:**
 1. **Signal Acquisition**  
