@@ -92,26 +92,6 @@ The five-stage training procedure visual diagram:
 
 ---
 
-### Stage Descriptions
-
-1. **Encoder-Classifier Training:**  
-   Train a CNN encoder and MLP classifier jointly using cross-entropy loss.
-
-2. **Encoder Fine-Tuning (Triplet Loss):**  
-   Fine-tune the encoder with triplet loss to improve feature separability (classifier frozen).
-
-3. **Classifier Retraining:**  
-   Retrain a new classifier on the frozen encoder with cross-entropy loss.
-
-4. **Codebook Construction (LBG Algorithm):**  
-   Generate a codebook from encoder outputs using the LBG algorithm.
-
-5. **Joint VQ-VAE Training:**  
-   Initialize and train the full VQ-VAE model with all components.
-
-
----
-
 ## 🔧 Proposed Modifications
 
 - **Mahalanobis Triplet Loss:**  
