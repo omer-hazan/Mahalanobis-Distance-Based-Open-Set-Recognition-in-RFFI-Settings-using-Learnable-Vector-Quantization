@@ -62,15 +62,41 @@ We evaluate our method using real-world and synthetic RFFI datasets, including d
 
 ---
 
-## 🖼️ Example Results
+## 📊 Codebook Usage Visualizations
 
-Below are example visualizations from our method:
+The following figures visualize how the codebook is used in our Mahalanobis distance-based VQ-VAE.  
+For each sample, we plot the inverse Mahalanobis distance (\(1/D_M(x, q)\)) to all codewords. Green bars indicate codewords belonging to the same class as the input.  
+These plots help assess how codewords are activated and whether the model distributes assignments as intended.
 
-### Codebook Usage Patterns
-![codebook-usage](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/assets/codebook-usage.png)
+---
 
-### Mahalanobis Score Distributions
-![mahalanobis-scores](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/assets/mahalanobis-scores.png)
+### Single-Codeword Collapse
+![Single-codeword collapse](figures/codebook_usage_single.png)
+*A failure case where a class is mapped to just one codeword, limiting expressiveness.*
+
+---
+
+### Collapse onto Class 3
+![Collapse onto class 3](figures/codebook_usage_class3.png)
+*Another failure case where the codebook collapses, over-assigning codewords to class 3 and leaving other classes underrepresented.*
+
+---
+
+### Multiple-Codeword Assignment
+![Multiple-codeword assignment](figures/codebook_usage_multi.png)
+*A more balanced scenario where multiple codewords are assigned per class.*
+
+---
+
+### Euclidean Quantization
+![Euclidean quantization](figures/codebook_usage_euclidean.png)
+*For comparison, the Euclidean case shows a more even codeword distribution—closer to the ideal number per class.*
+
+---
+
+### Rogue Sample Histogram
+![Rogue sample histogram](figures/rogue_histogram_mahalanobis.png)
+*Histogram for a rogue (unknown) device. Mahalanobis-based models yield more consistent rogue sample responses across devices, aiding open set recognition.*
 
 ---
 
