@@ -1,17 +1,5 @@
 ###################################################################################################
 ###################################################################################################
-#################################        Adaptive Codebook        #################################
-################################################################################################
-###################################################################################################
-
-''' Here the implementation of Learning Multi-Rate Vector Quantization for Remote Deep Inference by
-May Malka, Shai Ginzach, and Nir Shlezinger
-
-For further questions: maymal@post.bgu.ac.il
-'''
-
-###################################################################################################
-###################################################################################################
 #################################             Imports             #################################
 ###################################################################################################
 ###################################################################################################
@@ -190,7 +178,7 @@ def train_fr(model, optimizer, criterion, trainloader, valloader, device, epochs
 
             # -------------- NEW CODE FOR CODEBOOK USAGE --------------
             # If the model uses a quantizer, track the usage of each code index.
-            # We'll do another pass over val_loader to see how often each codeword is used.
+  
             if hasattr(model, 'quantizer'):
                 # Initialize a counter for each codeword
                 num_codewords = model.quantizer.num_embeddings  # or your codebook dimension
@@ -200,17 +188,10 @@ def train_fr(model, optimizer, criterion, trainloader, valloader, device, epochs
                 with torch.no_grad():
                     for inputs, labels in valloader:
                         inputs = inputs.to(device)
-                        # In your model's forward(), ensure you can retrieve the code indices.
-                        # For example, you might have something like:
-                        #   preds, quant_loss, code_indices = model(inputs, return_indices=True)
-                        # or store code_indices as an attribute inside the model.quantizer.
-                        
-                        # If your forward call doesn't return indices, you'll need to modify
-                        # the model/quantizer to give them back. Below is an example pattern:
                         preds, quant_loss, code_indices = model(inputs, return_indices=True)
 
                         # code_indices should be a tensor of shape [batch_size] or [batch_size, ...]
-                        # Flatten if needed:
+            
                         code_indices = code_indices.view(-1).cpu().numpy()
                         for idx in code_indices:
                             codeword_counts[idx] += 1
@@ -255,7 +236,7 @@ def train_fr_hcf(model, optimizer, criterion, trainloader, valloader, device,
     val_accuracies = []
     best_val_acc = 0
     scheduler = ReduceLROnPlateau(optimizer, 'min',factor=0.5,patience=30)
-    # # Example scheduler
+
     # scheduler = CyclicLR(
     #     optimizer,
     #     base_lr=5e-7,
@@ -505,7 +486,6 @@ def setup_config():
         # Pretrained component flags:
         'pretrained_encoder': True,     # Load pretrained encoder weights?
         'pretrained_classifier': False,  # Load pretrained classifier weights?
-        #WHEN STAGE 5 HANGE TO TRUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUE
         'pretrained_codebook': True,    # Load pretrained codebook weights? (Only used if use_quantizer is True)
         'load_codebook_from_model_weights': False,
         
@@ -517,8 +497,8 @@ def setup_config():
         
         # Architecture options:
         'use_hcf': True,                 # Include hand-crafted features (HCF)?
-        #WHEN STAGE 5 HANGE TO TRUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUE
-        'use_quantizer': True,          # Use a model variant with a quantizer/codebook? #WHEN STAGE 5 HANGE TO TRUUUUUUUUUUUUUUUUUUUUUUUUE
+        
+        'use_quantizer': True,          # Use a model variant with a quantizer/codebook? 
         'diag_cov': True,
         'dropout' : False,
         'entropy_lambda' : 1,  # <-- Tune this! Start with 1e-2 or 1e-3
@@ -914,8 +894,8 @@ def main():
         print(f"  {k}: {v}")
     
     # Set up Weights & Biases.
-    wandb.login(key="f873a533ed8359c89bb63389601e9439b0f2f853")
-    wandb.init(project="vq-vae-classifier", entity='https-www-bgu-ac-il-')
+    wandb.login(key="")
+    wandb.init(project="", entity='')
     
     # Setup device.
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
