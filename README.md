@@ -6,16 +6,14 @@ This repository presents a **Mahalanobis distance-based open set recognition fra
 ## 📖 Overview
 
 ### 🔍 Motivation
-Traditional RFFI approaches often assume a **closed-set** scenario, where all test devices are seen during training. However, in real-world settings, new, previously unseen devices may appear—a challenge known as **open set recognition (OSR)**.  
+Traditional RFFI approaches often assume a **closed-set** scenario, where all test devices are seen during training. However, in real world settings, new, previously unseen devices may appear a challenge known as **open set recognition (OSR)**.  
 This work tackles open set recognition for RFFI, proposing a solution based on learnable vector quantization and Mahalanobis distance for improved generalization and unknown detection.
 
 ### 💡 Our Contribution
 We propose the following innovations:
-1. **Learnable Vector Quantization**:  
-   Incorporates a vector quantization layer whose codebook is learned jointly with the encoder, allowing for flexible representation of device fingerprints.
-2. **Mahalanobis Distance-based Classification**:  
+1. **Mahalanobis Distance-based Classification**:  
    Utilizes Mahalanobis distance in latent space, leveraging the full covariance structure for robust device classification and outlier detection.
-3. **Open Set Evaluation**:  
+2. **Open Set Evaluation**:  
    Provides comprehensive benchmarks for both seen (closed set) and unseen (open set) devices, highlighting the advantages of our approach.
 
 ---
