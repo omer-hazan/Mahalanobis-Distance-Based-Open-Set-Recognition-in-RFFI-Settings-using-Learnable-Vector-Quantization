@@ -30,11 +30,6 @@ from sklearn.cluster import KMeans
 from scipy.optimize import linear_sum_assignment
 from sklearn.manifold import TSNE
 
-
-#from keras.models import load_model
-#from keras.callbacks import EarlyStopping, ReduceLROnPlateau
-#from keras.optimizers import RMSprop, Adam
-
 from tensorflow.keras.models import load_model
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 from tensorflow.keras.optimizers import RMSprop, Adam
@@ -177,39 +172,6 @@ def train_feature_extractor(
     best_model = None
 
     # 10. Training loop
-#    for epoch in range(500):
-#        triplet_net.train()
-#        train_loss = 0
-#        # ---- Training steps ----
-#        for step, (inputs, _) in enumerate(train_generator):
-#            inputs = [inp.to(device) for inp in inputs]
-#            optimizer.zero_grad()
-#            #loss = triplet_net(*inputs)
-#            # Unpack triplet batch: each input = (anchor, positive, negative, labels)
-#            anchor, positive, negative, labels = inputs  # shape: (B, D), (B, D), (B, D), (B,)
-#            embeddings = torch.cat([anchor, positive, negative], dim=0)
-#            labels_all = torch.cat([labels, labels, labels], dim=0)
-#            #num_classes = ...  # Set to your number of classes/devices
-#            num_classes = len(np.unique(label_train.cpu().numpy()))
-#
-#            
-#            # Estimate covariances just for the batch
-#            _, covs = estimate_class_mean_cov(embeddings, labels_all, num_classes)
-#            cov_invs = [torch.linalg.inv(cov) for cov in covs]
-#            
-#            # Mahalanobis Triplet Loss
-#            maha_loss_fn = MahalanobisTripletLoss(margin=0.1)
-#            loss = maha_loss_fn(anchor, positive, negative, labels, cov_invs)
-#
-#            loss.backward()
-#            optimizer.step()
-#            train_loss += loss.item()
-#
-#            # Because we created our generator to iterate over all data,
-#            # break after covering everything once
-#            if step >= len(data_train) // batch_size:
-#                break
-#        train_loss /= (len(data_train) // batch_size)
 
     num_classes = len(np.unique(label_train.cpu().numpy()))  # Get number of classes in train set
     maha_loss_fn = MahalanobisTripletLoss(margin=margin)        # Instantiate ONCE
@@ -220,12 +182,6 @@ def train_feature_extractor(
         for step, (inputs, _) in enumerate(train_generator):
             anchor, positive, negative, labels = [inp.to(device) for inp in inputs]
             optimizer.zero_grad()
-
-#            embeddings = torch.cat([anchor, positive, negative], dim=0)
-#            labels_all = torch.cat([labels, labels, labels], dim=0)
-#            _, covs = estimate_class_mean_cov(embeddings, labels_all, num_classes)
-#            cov_invs = [torch.linalg.inv(cov) for cov in covs]
-#            loss = maha_loss_fn(anchor, positive, negative, labels, cov_invs)
 
             embeddings = torch.cat([anchor, positive, negative], dim=0)
             labels_all = torch.cat([labels, labels, labels], dim=0)
@@ -245,26 +201,6 @@ def train_feature_extractor(
         triplet_net.eval()
         val_loss = 0
         with torch.no_grad():
-#            for step, (inputs, _) in enumerate(valid_generator):
-#                inputs = [inp.to(device) for inp in inputs]
-#                #loss = triplet_net(*inputs)
-#                # Unpack triplet batch: each input = (anchor, positive, negative, labels)
-#                anchor, positive, negative, labels = inputs  # shape: (B, D), (B, D), (B, D), (B,)
-#                embeddings = torch.cat([anchor, positive, negative], dim=0)
-#                labels_all = torch.cat([labels, labels, labels], dim=0)
-#                num_classes = ...  # Set to your number of classes/devices
-#                
-#                # Estimate covariances just for the batch
-#                _, covs = estimate_class_mean_cov(embeddings, labels_all, num_classes)
-#                cov_invs = [torch.linalg.inv(cov) for cov in covs]
-#                
-#                # Mahalanobis Triplet Loss
-#                maha_loss_fn = MahalanobisTripletLoss(margin=0.1)
-#                loss = maha_loss_fn(anchor, positive, negative, labels, cov_invs)
-#
-#                val_loss += loss.item()
-#                if step >= len(data_valid) // batch_size:
-#                    break
 
 
             for step, (inputs, _) in enumerate(valid_generator):
@@ -385,7 +321,7 @@ def train_feature_extractor_hcf(
     maha_loss_fn = MahalanobisTripletLoss(margin=margin)  # Assuming you have this loss function
 
     #===================Diag===================================
-    diag_cov = True
+    diag_cov = False
     #===================Diag===================================
     for epoch in range(500):
         # ---- train ----
