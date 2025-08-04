@@ -65,7 +65,8 @@ We evaluate our method using real-world and synthetic RFFI datasets, including d
 ## 📊 Codebook Usage Visualizations
 
 The following figures visualize how the codebook is used in our Mahalanobis distance-based VQ-VAE.  
-For each sample, we plot the inverse Mahalanobis distance (\(1/D_M(x, q)\)) to all codewords. Green bars indicate codewords belonging to the same class as the input.  
+For each sample, we plot the inverse Mahalanobis distance 1 / D_M(x, q), where D_M is Mahalanobis distance
+ to all codewords. Green bars indicate codewords belonging to the same class as the input.  
 These plots help assess how codewords are activated and whether the model distributes assignments as intended.
 
 ---
