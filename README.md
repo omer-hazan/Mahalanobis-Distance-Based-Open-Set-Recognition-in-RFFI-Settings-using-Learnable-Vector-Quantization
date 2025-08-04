@@ -48,13 +48,16 @@ flowchart TD
 **Pipeline Steps:**
 1. **Signal Acquisition**  
    - Raw RF signals are captured from wireless devices.
-2. **Feature Extraction (Encoder)**  
+2. **Pre-Processing**
+   - Using STFT we generate from each packet a channel independent spectogram
+   - Extracting device distinctive Hand Crafted Features (HCFs)
+3. **Feature Extraction (Encoder)**  
    - A neural network encoder maps the signal to a compact latent representation.
-3. **Learnable Vector Quantization**  
+4. **Learnable Vector Quantization**  
    - The latent features are quantized using a learnable codebook.
-4. **Mahalanobis Distance-Based Classification**  
+5. **Mahalanobis Distance-Based Classification**  
    - Device identity is inferred by measuring Mahalanobis distances in the codebook space. Unknown (open set) devices are detected as outliers.
-5. **Open Set Detection**  
+6. **Open Set Detection**  
    - Thresholding the Mahalanobis score enables distinguishing between known and unknown devices.
 
 ---
